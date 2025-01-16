@@ -2,7 +2,7 @@ import { CryptoUseCase } from "./cryptoUseCase";
 
 export class CryptoRepository implements CryptoUseCase {
 
-    encryptService:CryptoUseCase;
+    private encryptService:CryptoUseCase;
 
     constructor(encryptService:CryptoUseCase){
         this.encryptService = encryptService;
@@ -15,9 +15,9 @@ export class CryptoRepository implements CryptoUseCase {
             throw e;
         }
     }
-    compareValue(value: string, hash: string): boolean {
+    async compareValue(value: string, hash: string): Promise<boolean> {
         try{
-            return this.compareValue(value, hash);
+            return await this.encryptService.compareValue(value,hash);
         }catch(e){
             throw e;
         }
