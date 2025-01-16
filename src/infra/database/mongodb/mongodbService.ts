@@ -2,13 +2,18 @@ import mongoose from "mongoose";
 import { DatabaseUseCase } from "../databaseUseCase";
 import { MongoDBSingleton } from "./mongodbSingleton";
 import { User } from "../../../domain/entity/user";
-import { userCreateMongoDto } from "./mongoSchema/userMongoDto";
+import { findUserByEmailMongoDto, userCreateMongoDto } from "./mongoSchema/userMongoDto";
 
 export class MongoDBService implements DatabaseUseCase {
 
 
-    findUserByEmail(email: string): Promise<User> {
-        throw new Error("Method not implemented.");
+    async findUserByEmail(email: string): Promise<User | null> {
+        try{
+            const user = await findUserByEmailMongoDto(email);
+            return user;
+        }catch(e){
+            throw e;
+        }
     }
 
    async createUser(user: User): Promise<User> {

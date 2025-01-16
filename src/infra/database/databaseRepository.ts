@@ -9,8 +9,13 @@ export class DatabaseRepository implements DatabaseUseCase {
         this.databaseService = databaseService;
     }
 
-    findUserByEmail(email: string): Promise<User> {
-        throw new Error("Method not implemented.");
+    findUserByEmail(email: string): Promise<User | null> {
+        try{
+            const user = this.databaseService.findUserByEmail(email);
+            return user;
+        }catch(e){
+            throw e;
+        }
     }
 
     async createUser(user: User): Promise<User> {

@@ -27,8 +27,13 @@ export class UserRepository implements DatabaseUseCase {
         //TODO: Dont use this method, because i need to fix one away to separate the connection from the repository and the useCase
         throw new Error("Method not implemented.");
     }
-    findUserByEmail(email: string): Promise<User> {
-        throw new Error("Method not implemented.");
+    findUserByEmail(email: string): Promise<User | null> {
+        try{
+            const user = this.databaseService.findUserByEmail(email);
+            return user;
+        }catch(e){
+            throw e;
+        }
     }
     updateUser(user: User): Promise<User> {
         throw new Error("Method not implemented.");

@@ -1,4 +1,5 @@
 import { User } from "../../../../domain/entity/user";
+import { CustomError } from "../../../../utils/customError";
 import { UserModel } from "./userSchema";
 
 export const userCreateMongoDto = async (user:User) => {
@@ -20,3 +21,12 @@ export const userCreateMongoDto = async (user:User) => {
     }
 }
 
+export const findUserByEmailMongoDto = async (email:string) => {
+    try{
+        const userModel = await UserModel.findOne({email: email}).exec();
+        if(!userModel) return null;
+        return userModel.toObject();
+    }catch(err){
+        throw err;
+    }
+}

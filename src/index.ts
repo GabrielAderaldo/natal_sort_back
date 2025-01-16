@@ -14,6 +14,7 @@ app.use(cors());
 
 
 const urlConnection = process.env.URL_CONNECTION;
+const PORT = process.env.PORT || 3000;
 
 if(!urlConnection) console.log('Error to get URL_CONNECTION from your environment');
 
@@ -28,6 +29,6 @@ databaseRepository.connect(urlConnection!).then(()=>{
 
 app.use('/auth',auth)
 
-app.listen('3000',function(){
+app.listen(PORT,function(){
     console.log('Server is running on port 3000');
 });
