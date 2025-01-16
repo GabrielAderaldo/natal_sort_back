@@ -1,11 +1,33 @@
+import { User } from "../../domain/entity/user";
 import { DatabaseUseCase } from "./databaseUseCase";
 
-export class DatabaseRepository implements DatabaseUseCase{
+export class DatabaseRepository implements DatabaseUseCase {
     
     databaseService: DatabaseUseCase;
     
-    constructor(databaseService: DatabaseUseCase){
+    constructor(databaseService: DatabaseUseCase) {
         this.databaseService = databaseService;
+    }
+
+    findUserByEmail(email: string): Promise<User> {
+        throw new Error("Method not implemented.");
+    }
+
+    async createUser(user: User): Promise<User> {
+        try{
+            const userCreate = await this.databaseService.createUser(user);
+            return userCreate;
+        }catch(e){
+            throw e;
+        }
+    }
+
+    updateUser(user: User): Promise<User> {
+        throw new Error("Method not implemented.");
+    }
+    
+    deleteUser(id: number): Promise<Boolean> {
+        throw new Error("Method not implemented.");
     }
 
     async connect(urlConnetion:string): Promise<Boolean> {

@@ -4,12 +4,16 @@ export class User {
     name: string;
     email: string;
     password: string;
+    createdAt: number;
+    updatedAt: number;
     
     constructor(id:number,name:string,email:string,password:string){
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.createdAt = Date.now();
+        this.updatedAt = Date.now();
     }
 
     isValidEmail(): boolean {
